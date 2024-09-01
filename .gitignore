@@ -50,3 +50,11 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+# Remove VSC Codes
+.vscode
+
+# Remove BIN Folder & Obj
+obj
+bin
