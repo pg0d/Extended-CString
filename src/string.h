@@ -3,7 +3,6 @@
 
 #include "common.h"
 #include "namespace.h"
-#include <string.h>
 
 typedef struct xs
 {
@@ -17,9 +16,7 @@ xs xs_empty(void);
 
 void xs_push_str(xs s, const char *str);
 
-void xs_to_lower(xs s);
-void xs_to_upper(xs s);
-
+void xs_change_case(xs s, CaseMethod method);
 void xs_free_mem(xs s);
 
 #endif

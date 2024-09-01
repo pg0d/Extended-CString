@@ -43,29 +43,31 @@ xs xs_empty(void)
     return xs_raw_with_len("", 0);
 }
 
-void xs_to_lower(xs s)
+void xs_change_case(xs s, CaseMethod method)
 {
-    char *ptr = s->buf;
-    size_t len = s->len, i = 0;
-
-    while (i < len)
+    if (method == CASE_UPPER)
     {
-        *ptr = tolower(*ptr);
-        ++ptr;
-        ++i;
+        char *ptr = s->buf;
+        size_t len = s->len, i = 0;
+
+        while (i < len)
+        {
+            *ptr = toupper(*ptr);
+            ++ptr;
+            ++i;
+        }
     }
-}
-
-void xs_to_upper(xs s)
-{
-    char *ptr = s->buf;
-    size_t len = s->len, i = 0;
-
-    while (i < len)
+    else
     {
-        *ptr = toupper(*ptr);
-        ++ptr;
-        ++i;
+        char *ptr = s->buf;
+        size_t len = s->len, i = 0;
+
+        while (i < len)
+        {
+            *ptr = tolower(*ptr);
+            ++ptr;
+            ++i;
+        }
     }
 }
 
@@ -89,9 +91,8 @@ void xs_push_str(xs s, const char *str)
 }
 
 const xs_ops xt = {
-    .tolower    = xs_to_lower,
-    .toupper    = xs_to_upper,
-    .from       = xs_raw_str,
-    .free       = xs_free_mem,
-    .push_str   = xs_push_str,
+    .change_case = xs_change_case,
+    .from = xs_raw_str,
+    .free = xs_free_mem,
+    .push_str = xs_push_str,
 };

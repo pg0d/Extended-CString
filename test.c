@@ -8,9 +8,10 @@ int main()
     printf("str %s\n", sample->buf);
     printf("len %ld\n", sample->len);
 
-    xt.push_str(sample, " sample");
+    xt.push_str(sample, " sample text");
+
+    xt.change_case(sample, CASE_UPPER);
     printf("str %s\n", sample->buf);
-    printf("len %ld\n", sample->len);
 
     xt.free(sample);
     return 0;
