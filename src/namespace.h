@@ -13,7 +13,6 @@ typedef enum CaseMethod {
 
 typedef struct {
     void    (*change_case)(xs s, CaseMethod method);
-    void    (*toupper)(xs s);
     void    (*free)(xs s);
     void    (*push_str)(xs s, const char *str);
     xs      (*from)(const char *buf);
