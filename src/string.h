@@ -16,10 +16,10 @@ xs xs_raw_with_len(const char *bstr, size_t size);
 xs xs_empty(void);
 bool xs_is_empty(xs s);
 
-
 void xs_push_str(xs s, const char *str);
 void xs_change_case(xs s, CaseMethod method);
 void xs_free_mem(xs s);
 char xs_pop(xs s);
+size_t xs_get_index(xs haystack, const char *needle);
 
 #endif

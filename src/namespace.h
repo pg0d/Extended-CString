@@ -18,6 +18,7 @@ typedef struct {
     xs      (*from)(const char *buf);
     bool    (*is_empty)(xs s);
     char    (*pop)(xs s);
+    size_t  (*get_index)(xs haystack, const char *needle);
 } xs_ops;
 
 extern const xs_ops xt;

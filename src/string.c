@@ -108,6 +108,12 @@ char xs_pop(xs s)
     return last_char;
 }
 
+size_t xs_get_index(xs haystack, const char *needle)
+{
+    if (needle == NULL || *needle == '\0') return (size_t)-1;
+    char *k = strstr(haystack->buf, needle);
+    return k != NULL ? (size_t)(k - haystack->buf) : (size_t)-1;
+}
 
 const xs_ops xt = {
     .change_case = xs_change_case,
@@ -116,4 +122,5 @@ const xs_ops xt = {
     .push_str = xs_push_str,
     .is_empty = xs_is_empty,
     .pop = xs_pop,
+    .get_index = xs_get_index,
 };
