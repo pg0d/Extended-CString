@@ -3,16 +3,19 @@
 
 int main()
 {
+
+    xs sample = xt.from("as");
+    // printf("str %s\n", sample->buf);
+    // printf("len %ld\n", sample->len);
+
+    // xt.change_case(sample, CASE_UPPER);
     
-    xs sample = xt.from("hello world");
-    printf("str %s\n", sample->buf);
-    printf("len %ld\n", sample->len);
+    // printf("str %s\n", sample->buf);
+    // printf("%d \n", xt.is_empty(sample));
 
-    xt.push_str(sample, " sample text");
-
-    xt.change_case(sample, CASE_UPPER);
-    printf("str %s\n", sample->buf);
-
+    while (!xt.is_empty(sample))
+        printf("%c \n", xt.pop(sample));
+        
     xt.free(sample);
     return 0;
 }

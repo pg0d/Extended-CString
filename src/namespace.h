@@ -16,6 +16,8 @@ typedef struct {
     void    (*free)(xs s);
     void    (*push_str)(xs s, const char *str);
     xs      (*from)(const char *buf);
+    bool    (*is_empty)(xs s);
+    char    (*pop)(xs s);
 } xs_ops;
 
 extern const xs_ops xt;

@@ -1,6 +1,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdbool.h>
+
 #include "string.h"
 #include "alloc.h"
 #include "namespace.h"
@@ -41,6 +43,11 @@ xs xs_raw_str(const char *bstr)
 xs xs_empty(void)
 {
     return xs_raw_with_len("", 0);
+}
+
+bool xs_is_empty(xs s)
+{
+    return s->len == 0;
 }
 
 void xs_change_case(xs s, CaseMethod method)
@@ -90,9 +97,23 @@ void xs_push_str(xs s, const char *str)
     s->len = new_len;
 }
 
+char xs_pop(xs s)
+{
+    if (s == NULL || s->len == 0)
+        return '\0';
+
+    char last_char = s->buf[s->len - 1];
+    s->len--;
+
+    return last_char;
+}
+
+
 const xs_ops xt = {
     .change_case = xs_change_case,
     .from = xs_raw_str,
     .free = xs_free_mem,
     .push_str = xs_push_str,
+    .is_empty = xs_is_empty,
+    .pop = xs_pop,
 };
